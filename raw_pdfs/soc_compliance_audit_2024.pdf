@@ -1,0 +1,70 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 3606 >>
+stream
+BT /F2 18 Tf 72 750 Td (SOC 2 Type II Compliance Report -- Tax Data Processing Controls) Tj ET
+BT /F1 9 Tf 72 718 Td (Report Period: Jan 1 - Dec 31, 2024 | Auditor: Deloitte & Touche LLP | System: AMEX Tax Data Processing Platform) Tj ET
+BT /F1 8 Tf 72 700 Td (================================================================================) Tj ET
+BT /F2 14 Tf 72 678 Td (1. Scope and Objectives) Tj ET
+BT /F1 10 Tf 82 656 Td (This SOC 2 Type II report covers the Tax Data Processing Platform operated by American) Tj ET
+BT /F1 10 Tf 82 642 Td (Express Company's Enterprise Tax Department. The platform processes tax-related data for) Tj ET
+BT /F1 10 Tf 82 628 Td (US federal, state, and international tax compliance, including Forms 1099, 1042-S, and) Tj ET
+BT /F1 10 Tf 82 614 Td (country-by-country reporting.) Tj ET
+BT /F1 10 Tf 82 588 Td (The examination covers the Trust Services Criteria for Security, Availability, Processing) Tj ET
+BT /F1 10 Tf 82 574 Td (Integrity, and Confidentiality for the period January 1, 2024 through December 31, 2024.) Tj ET
+BT /F2 14 Tf 72 552 Td (2. System Description) Tj ET
+BT /F1 10 Tf 82 530 Td (The Tax Data Processing Platform consists of: \(a\) data ingestion pipelines collecting) Tj ET
+BT /F1 10 Tf 82 516 Td (transaction data from 47 source systems across card member services, merchant services,) Tj ET
+BT /F1 10 Tf 82 502 Td (and corporate treasury; \(b\) a tax calculation engine applying jurisdiction-specific rules) Tj ET
+BT /F1 10 Tf 82 488 Td (for 130+ jurisdictions; \(c\) regulatory filing generation for IRS, state agencies, and) Tj ET
+BT /F1 10 Tf 82 474 Td (foreign tax authorities; \(d\) a reconciliation framework ensuring data integrity across) Tj ET
+BT /F1 10 Tf 82 460 Td (processing stages.) Tj ET
+BT /F1 10 Tf 82 434 Td (The platform processes approximately 2.3 billion transaction records annually and) Tj ET
+BT /F1 10 Tf 82 420 Td (generates over 45 million tax information returns.) Tj ET
+BT /F2 14 Tf 72 398 Td (3. Control Activities and Test Results) Tj ET
+BT /F1 10 Tf 82 376 Td (Control C-1 \(Access Management\): Logical access to the Tax Data Processing Platform is) Tj ET
+BT /F1 10 Tf 82 362 Td (restricted to authorized personnel through multi-factor authentication and role-based) Tj ET
+BT /F1 10 Tf 82 348 Td (access controls. Tested 4 quarters: No exceptions noted.) Tj ET
+BT /F1 10 Tf 82 322 Td (Control C-2 \(Change Management\): All changes to tax calculation rules and filing templates) Tj ET
+BT /F1 10 Tf 82 308 Td (follow a documented change management process including peer review, testing in a non-) Tj ET
+BT /F1 10 Tf 82 294 Td (production environment, and management approval. Tested 4 quarters: 1 exception noted -- a) Tj ET
+BT /F1 10 Tf 82 280 Td (configuration change was deployed without documented test results in Q2 2024. Management) Tj ET
+BT /F1 10 Tf 82 266 Td (remediated the control gap in Q3 2024.) Tj ET
+BT /F1 10 Tf 82 240 Td (Control C-3 \(Data Integrity\): Automated reconciliation controls verify completeness and) Tj ET
+BT /F1 10 Tf 82 226 Td (accuracy of tax data at each processing stage. Tested 4 quarters: No exceptions noted.) Tj ET
+BT /F2 14 Tf 72 204 Td (4. Auditor Opinion) Tj ET
+BT /F1 10 Tf 82 182 Td (In our opinion, the controls within the Tax Data Processing Platform were suitably) Tj ET
+BT /F1 10 Tf 82 168 Td (designed and operating effectively throughout the examination period to provide reasonable) Tj ET
+BT /F1 10 Tf 82 154 Td (assurance that the applicable trust services criteria were met, subject to the exception) Tj ET
+BT /F1 10 Tf 82 140 Td (noted in Control C-2.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000003909 00000 n 
+0000003979 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+4054
+%%EOF

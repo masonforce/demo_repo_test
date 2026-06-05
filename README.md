@@ -29,6 +29,18 @@ VOLUME  = "source_volume"        # writes to source_volume/raw_pdfs
 > `/tmp` first, then copies onto the volume with `dbutils.fs.cp`. Use the same
 > pattern in the encryption notebook.
 
+## `raw_pdfs/` — pre-generated PDFs (upload directly)
+
+The 12 synthetic PDFs are also committed under `raw_pdfs/` so you can skip the
+generator notebook entirely. In the workspace:
+
+**Catalog Explorer → `unstructured_poc_v2` → `mason_demo_schema` → `source_volume`
+→ Upload to this volume** → drop the 12 files into a `raw_pdfs/` folder.
+
+This UI upload writes through the supported path (no serverless `dbutils.fs.cp`
+dance needed). Use either this OR the generator notebook — not both.
+
 **Run order in the pipeline:**
-`generate_synthetic_pdfs` → encryption notebook (`raw_pdfs` → `encrypted_pdfs`)
-→ Lakeflow pipeline (bronze + silver) → gold → vector search.
+upload (or run `generate_synthetic_pdfs`) → encryption notebook
+(`raw_pdfs` → `encrypted_pdfs`) → Lakeflow pipeline (bronze + silver)
+→ gold → vector search.

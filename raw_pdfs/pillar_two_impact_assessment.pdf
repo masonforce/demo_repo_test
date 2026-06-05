@@ -1,0 +1,62 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 2643 >>
+stream
+BT /F2 18 Tf 72 750 Td (OECD Pillar Two -- Global Minimum Tax Impact Assessment) Tj ET
+BT /F1 9 Tf 72 718 Td (Assessment Date: 2025-06-30 | Effective Date: January 1, 2024 | Prepared By: AMEX International Tax Planning) Tj ET
+BT /F1 8 Tf 72 700 Td (================================================================================) Tj ET
+BT /F2 14 Tf 72 678 Td (1. Overview of Pillar Two) Tj ET
+BT /F1 10 Tf 82 656 Td (The OECD/G20 Inclusive Framework on Base Erosion and Profit Shifting \(BEPS\) adopted the) Tj ET
+BT /F1 10 Tf 82 642 Td (Global Anti-Base Erosion \(GloBE\) Model Rules in December 2021, establishing a global) Tj ET
+BT /F1 10 Tf 82 628 Td (minimum effective tax rate of 15% for multinational enterprises with consolidated revenues) Tj ET
+BT /F1 10 Tf 82 614 Td (exceeding EUR 750 million.) Tj ET
+BT /F1 10 Tf 82 588 Td (American Express Company, with consolidated revenues of $60.5B for fiscal year 2024, is) Tj ET
+BT /F1 10 Tf 82 574 Td (within scope of the GloBE rules in all jurisdictions that have enacted implementing) Tj ET
+BT /F1 10 Tf 82 560 Td (legislation.) Tj ET
+BT /F2 14 Tf 72 538 Td (2. Jurisdictional Analysis) Tj ET
+BT /F1 10 Tf 82 516 Td (AMEX operates in 130+ countries and territories. Based on our Pillar Two impact) Tj ET
+BT /F1 10 Tf 82 502 Td (assessment, 8 jurisdictions have effective tax rates below 15% on a GloBE basis before) Tj ET
+BT /F1 10 Tf 82 488 Td (application of substance-based income exclusions \(SBIE\):) Tj ET
+BT /F1 10 Tf 82 462 Td (Singapore \(ETR: 12.3%\), Hong Kong \(ETR: 11.8%\), Ireland \(ETR: 13.2%\), UAE \(ETR: 0% -- pre-) Tj ET
+BT /F1 10 Tf 82 448 Td (Corporate Tax Law\), Bermuda \(ETR: 0%\), Cayman Islands \(ETR: 0%\), Luxembourg \(ETR: 14.1%\),) Tj ET
+BT /F1 10 Tf 82 434 Td (Switzerland \(ETR: 13.7%\).) Tj ET
+BT /F1 10 Tf 82 408 Td (After applying SBIE \(5% of tangible assets + 5% of payroll\), top-up tax exposure is) Tj ET
+BT /F1 10 Tf 82 394 Td (estimated at $127M annually.) Tj ET
+BT /F2 14 Tf 72 372 Td (3. Compliance and Reporting Obligations) Tj ET
+BT /F1 10 Tf 82 350 Td (AMEX will be required to file GloBE Information Returns \(GIR\) in each jurisdiction that) Tj ET
+BT /F1 10 Tf 82 336 Td (has adopted the Income Inclusion Rule \(IIR\) or Qualified Domestic Minimum Top-up Tax) Tj ET
+BT /F1 10 Tf 82 322 Td (\(QDMTT\). The first filing deadline for CY2024 is June 30, 2026.) Tj ET
+BT /F1 10 Tf 82 296 Td (We are implementing a Pillar Two compliance technology solution \(Thomson Reuters) Tj ET
+BT /F1 10 Tf 82 282 Td (ONESOURCE\) to automate the jurisdictional ETR calculations, SBIE computations, and GIR) Tj ET
+BT /F1 10 Tf 82 268 Td (preparation.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002946 00000 n 
+0000003016 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+3091
+%%EOF

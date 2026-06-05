@@ -1,0 +1,68 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 3346 >>
+stream
+BT /F2 18 Tf 72 750 Td (Response to Federal Reserve Examination -- Tax Reserve Methodology) Tj ET
+BT /F1 9 Tf 72 718 Td (Reference: FRB-EX-2025-AMX-004 | Date: 2025-09-15 | Division: Enterprise Tax | Regulator: Federal Reserve Bank of New York) Tj ET
+BT /F1 8 Tf 72 700 Td (================================================================================) Tj ET
+BT /F2 14 Tf 72 678 Td (1. Background) Tj ET
+BT /F1 10 Tf 82 656 Td (In connection with the Federal Reserve's annual supervisory examination of American) Tj ET
+BT /F1 10 Tf 82 642 Td (Express Company as a Bank Holding Company, the examination team has requested) Tj ET
+BT /F1 10 Tf 82 628 Td (documentation of the methodology used to establish tax reserves \(uncertain tax positions\)) Tj ET
+BT /F1 10 Tf 82 614 Td (under ASC 740-10.) Tj ET
+BT /F1 10 Tf 82 588 Td (As of December 31, 2024, AMEX reported total unrecognized tax benefits of $2.8B on the) Tj ET
+BT /F1 10 Tf 82 574 Td (consolidated balance sheet, an increase of $340M from the prior year.) Tj ET
+BT /F2 14 Tf 72 552 Td (2. Tax Reserve Methodology) Tj ET
+BT /F1 10 Tf 82 530 Td (AMEX follows a two-step process for establishing tax reserves under ASC 740-10-25: \(1\)) Tj ET
+BT /F1 10 Tf 82 516 Td (Recognition: A tax position is recognized only when it is more likely than not \(>50%) Tj ET
+BT /F1 10 Tf 82 502 Td (probability\) that the position will be sustained upon examination. \(2\) Measurement:) Tj ET
+BT /F1 10 Tf 82 488 Td (Recognized positions are measured at the largest amount of benefit that has a greater than) Tj ET
+BT /F1 10 Tf 82 474 Td (50% likelihood of being realized upon settlement.) Tj ET
+BT /F1 10 Tf 82 448 Td (The tax department maintains a database of approximately 850 individual tax positions) Tj ET
+BT /F1 10 Tf 82 434 Td (across 45 jurisdictions, each supported by a technical memorandum and probability) Tj ET
+BT /F1 10 Tf 82 420 Td (assessment.) Tj ET
+BT /F2 14 Tf 72 398 Td (3. Significant Tax Positions) Tj ET
+BT /F1 10 Tf 82 376 Td (The five largest uncertain tax positions are: \(1\) Transfer pricing -- intercompany) Tj ET
+BT /F1 10 Tf 82 362 Td (services: $780M reserve, more-likely-than-not sustained at 65% confidence. \(2\) Foreign tax) Tj ET
+BT /F1 10 Tf 82 348 Td (credit -- DST creditability: $420M reserve, MLTN at 55% confidence. \(3\) State apportionment) Tj ET
+BT /F1 10 Tf 82 334 Td (methodology: $310M reserve, MLTN at 70% confidence. \(4\) R&D credit -- software development:) Tj ET
+BT /F1 10 Tf 82 320 Td ($195M reserve, MLTN at 60% confidence. \(5\) GILTI high-tax exclusion: $145M reserve, MLTN) Tj ET
+BT /F1 10 Tf 82 306 Td (at 75% confidence.) Tj ET
+BT /F1 10 Tf 82 280 Td (The increase in reserves is primarily attributable to the DST creditability position) Tj ET
+BT /F1 10 Tf 82 266 Td (following the 2022 Final Foreign Tax Credit Regulations.) Tj ET
+BT /F2 14 Tf 72 244 Td (4. Governance and Oversight) Tj ET
+BT /F1 10 Tf 82 222 Td (Tax reserves are reviewed quarterly by the Tax Reserve Committee \(chaired by the VP of) Tj ET
+BT /F1 10 Tf 82 208 Td (Tax\) and presented to the Audit Committee of the Board of Directors semi-annually.) Tj ET
+BT /F1 10 Tf 82 194 Td (External auditors \(PricewaterhouseCoopers LLP\) independently assess the reasonableness of) Tj ET
+BT /F1 10 Tf 82 180 Td (tax positions as part of the annual financial statement audit.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000003649 00000 n 
+0000003719 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+3794
+%%EOF
