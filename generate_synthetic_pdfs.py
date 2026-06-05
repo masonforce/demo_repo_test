@@ -14,9 +14,10 @@
 # COMMAND ----------
 
 # ── Set these to match config.py ─────────────────────────────────────────────
-CATALOG = "<AMEX_CATALOG>"
-SCHEMA  = "<AMEX_SCHEMA>"
-RAW_DIR = f"/Volumes/{CATALOG}/{SCHEMA}/vol1/raw_pdfs"
+CATALOG = "unstructured_poc_v2"
+SCHEMA  = "mason_demo_schema"
+VOLUME  = "source_volume"
+RAW_DIR = f"/Volumes/{CATALOG}/{SCHEMA}/{VOLUME}/raw_pdfs"
 WRITE_EVAL_CSV = True   # also write KA eval Q/A pairs for evaluate_KA.py
 
 # COMMAND ----------
@@ -300,16 +301,22 @@ DOCUMENTS = [
 
 # COMMAND ----------
 
-import os as _os
-_os.makedirs(RAW_DIR, exist_ok=True)
+# UC Volumes don't support direct POSIX makedirs / writes on serverless
+# (os.makedirs -> errno 95; open(...,"wb") can yield empty files). Write to
+# local disk first, then copy onto the volume with dbutils.fs.cp.
+import os
+_local = "/tmp/synthetic_pdfs"
+os.makedirs(_local, exist_ok=True)
 
 for doc in DOCUMENTS:
     pdf_bytes = make_pdf(doc["title"], doc["sections"], doc.get("metadata"))
-    with open(f"{RAW_DIR}/{doc['filename']}", "wb") as f:
+    lp = f"{_local}/{doc['filename']}"
+    with open(lp, "wb") as f:
         f.write(pdf_bytes)
+    dbutils.fs.cp(f"file:{lp}", f"{RAW_DIR}/{doc['filename']}")
     print(f"  wrote {doc['filename']} ({len(pdf_bytes):,} B)")
 
-print(f"\n{len(DOCUMENTS)} synthetic PDFs written to {RAW_DIR}")
+print(f"\n{len(DOCUMENTS)} synthetic PDFs -> {RAW_DIR}")
 
 # COMMAND ----------
 
@@ -320,14 +327,14 @@ print(f"\n{len(DOCUMENTS)} synthetic PDFs written to {RAW_DIR}")
 # COMMAND ----------
 
 if WRITE_EVAL_CSV:
-    eval_dir = f"/Volumes/{CATALOG}/{SCHEMA}/vol1/ka_eval"
-    os.makedirs(eval_dir, exist_ok=True)
-    eval_path = f"{eval_dir}/eval_questions.csv"
-    with open(eval_path, "w", newline="") as f:
+    local_csv = "/tmp/eval_questions.csv"
+    with open(local_csv, "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["filename", "question", "guideline"])
         for doc in DOCUMENTS:
             w.writerow([doc["filename"], doc["question"], doc["guideline"]])
+    eval_path = f"/Volumes/{CATALOG}/{SCHEMA}/{VOLUME}/ka_eval/eval_questions.csv"
+    dbutils.fs.cp(f"file:{local_csv}", eval_path)
     print(f"Wrote {len(DOCUMENTS)} eval rows to {eval_path}")
     for doc in DOCUMENTS:
         print(f"\nQ: {doc['question']}\n   ({doc['filename']})")
