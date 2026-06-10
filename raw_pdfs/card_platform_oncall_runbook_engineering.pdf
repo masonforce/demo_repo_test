@@ -1,0 +1,60 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 2499 >>
+stream
+BT /F2 18 Tf 72 750 Td (Card Platform On-Call Runbook & Escalation Roster) Tj ET
+BT /F1 9 Tf 72 718 Td (Document Type: engineering | Service: Card Authorization Platform | Version: 3.1 | Updated: 2026-02-15) Tj ET
+BT /F1 8 Tf 72 700 Td (================================================================================) Tj ET
+BT /F2 14 Tf 72 678 Td (1. Escalation Roster) Tj ET
+BT /F1 10 Tf 82 656 Td (Primary On-Call: Lena Vasquez -- lena.vasquez@aexp.com -- \(480\) 555-0166) Tj ET
+BT /F1 10 Tf 82 642 Td (Secondary On-Call: Omar Haddad -- omar.haddad@aexp.com -- \(480\) 555-0177) Tj ET
+BT /F1 10 Tf 82 628 Td (Engineering Manager: Krishna Madhav Reddy -- \(602\) 555-0143) Tj ET
+BT /F1 10 Tf 82 614 Td (Platform Director \(escalation after 30 min SEV1\): Abhishek Dixit -- \(602\) 555-0109) Tj ET
+BT /F1 10 Tf 82 588 Td (PagerDuty rotation: card-platform-primary. Escalation policy CP-ESC-2.) Tj ET
+BT /F2 14 Tf 72 566 Td (2. Common Alerts & First Response) Tj ET
+BT /F1 10 Tf 82 544 Td (ALERT authz_latency_p99 > 800ms: check the downstream risk-scoring service health) Tj ET
+BT /F1 10 Tf 82 530 Td (dashboard; if risk-scoring is degraded, enable the cached-decision fallback flag) Tj ET
+BT /F1 10 Tf 82 516 Td (`authz.fallback.enabled=true`.) Tj ET
+BT /F1 10 Tf 82 490 Td (ALERT decline_rate_spike: compare against the merchant-category baseline; a spike isolated) Tj ET
+BT /F1 10 Tf 82 476 Td (to one acquirer usually indicates an upstream network issue -- open a bridge with Network) Tj ET
+BT /F1 10 Tf 82 462 Td (Operations before changing platform config.) Tj ET
+BT /F1 10 Tf 82 436 Td (ALERT token_vault_unreachable: this is an automatic SEV1; page the secondary immediately) Tj ET
+BT /F1 10 Tf 82 422 Td (and notify the Engineering Manager in Section 1.) Tj ET
+BT /F2 14 Tf 72 400 Td (3. Recovery Procedures) Tj ET
+BT /F1 10 Tf 82 378 Td (Restart sequence for the authorization workers must follow: drain connections, wait for) Tj ET
+BT /F1 10 Tf 82 364 Td (in-flight transactions to settle \(max 30s\), then rolling-restart no more than two pods at) Tj ET
+BT /F1 10 Tf 82 350 Td (a time to preserve quorum. Never restart the token vault and the authorization workers) Tj ET
+BT /F1 10 Tf 82 336 Td (simultaneously. After recovery, confirm the p99 latency returns below 400ms and post an) Tj ET
+BT /F1 10 Tf 82 322 Td (all-clear in the incident channel. For anything exceeding 30 minutes at SEV1, escalate to) Tj ET
+BT /F1 10 Tf 82 308 Td (the Platform Director listed in Section 1.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002802 00000 n 
+0000002872 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2947
+%%EOF

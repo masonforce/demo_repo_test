@@ -1,0 +1,58 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 2313 >>
+stream
+BT /F2 18 Tf 72 750 Td (Incident Postmortem -- Auth Service Outage) Tj ET
+BT /F1 9 Tf 72 718 Td (Document Type: engineering | Incident: INC-2026-0419 | Severity: SEV1 | Date: 2026-02-27) Tj ET
+BT /F1 8 Tf 72 700 Td (================================================================================) Tj ET
+BT /F2 14 Tf 72 678 Td (1. Incident Summary & Responders) Tj ET
+BT /F1 10 Tf 82 656 Td (Incident Commander: Rachel Okonkwo -- rachel.okonkwo@aexp.com -- \(480\) 555-0191) Tj ET
+BT /F1 10 Tf 82 642 Td (Primary On-Call \(Auth\): Sameer Patel -- sameer.patel@aexp.com -- \(480\) 555-0124) Tj ET
+BT /F1 10 Tf 82 628 Td (Comms Lead: Tony Briggs -- tony.briggs@aexp.com -- \(212\) 555-0188) Tj ET
+BT /F1 10 Tf 82 602 Td (Incident INC-2026-0419 \(SEV1\) caused a 47-minute partial outage of the cardmember) Tj ET
+BT /F1 10 Tf 82 588 Td (authentication service on 2026-02-26, 14:12-14:59 ET. Approximately 6.2% of login attempts) Tj ET
+BT /F1 10 Tf 82 574 Td (failed during the window.) Tj ET
+BT /F2 14 Tf 72 552 Td (2. Root Cause) Tj ET
+BT /F1 10 Tf 82 530 Td (A configuration change to the OAuth token-signing service deployed a rotated signing key) Tj ET
+BT /F1 10 Tf 82 516 Td (without propagating the public key to all validation nodes. Validation nodes in the us-) Tj ET
+BT /F1 10 Tf 82 502 Td (east region rejected tokens signed with the new key, producing HTTP 401 responses for) Tj ET
+BT /F1 10 Tf 82 488 Td (affected sessions.) Tj ET
+BT /F1 10 Tf 82 462 Td (The change passed staging because the staging cluster shares a single key-distribution) Tj ET
+BT /F1 10 Tf 82 448 Td (node, masking the propagation gap that exists in the multi-region production topology.) Tj ET
+BT /F2 14 Tf 72 426 Td (3. Resolution & Action Items) Tj ET
+BT /F1 10 Tf 82 404 Td (Mitigation: rolled back the key rotation at 14:51 ET; full recovery by 14:59 ET. Action) Tj ET
+BT /F1 10 Tf 82 390 Td (items: \(1\) add a cross-region key-propagation health check to the deploy pipeline -- owner) Tj ET
+BT /F1 10 Tf 82 376 Td (Sameer Patel, due 2026-03-13; \(2\) require a canary in a multi-node validation cluster) Tj ET
+BT /F1 10 Tf 82 362 Td (before production rollout -- owner Rachel Okonkwo, due 2026-03-20; \(3\) add alerting on) Tj ET
+BT /F1 10 Tf 82 348 Td (401-rate deltas per region -- owner Tony Briggs, due 2026-03-06.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002616 00000 n 
+0000002686 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2761
+%%EOF

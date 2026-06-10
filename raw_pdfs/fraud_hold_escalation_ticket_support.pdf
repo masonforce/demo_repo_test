@@ -1,0 +1,59 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 2239 >>
+stream
+BT /F2 18 Tf 72 750 Td (Support Escalation Ticket -- Fraud Hold Review) Tj ET
+BT /F1 9 Tf 72 718 Td (Document Type: support | Ticket: ESC-2026-771140 | Priority: High | Opened: 2026-03-01) Tj ET
+BT /F1 8 Tf 72 700 Td (================================================================================) Tj ET
+BT /F2 14 Tf 72 678 Td (1. Card Member & Identity Record \(Confidential\)) Tj ET
+BT /F1 10 Tf 82 656 Td (Card Member: Yusuf A. Rahman) Tj ET
+BT /F1 10 Tf 82 642 Td (Account \(card\): 3782 100061 33007) Tj ET
+BT /F1 10 Tf 82 628 Td (Residential Address: 215 Maple Court, Edison, NJ 08820) Tj ET
+BT /F1 10 Tf 82 614 Td (Email: yusuf.rahman@example.com) Tj ET
+BT /F1 10 Tf 82 600 Td (Phone: \(732\) 555-0159) Tj ET
+BT /F1 10 Tf 82 586 Td (Social Security Number \(last verified on file\): 623-90-4471) Tj ET
+BT /F1 10 Tf 82 560 Td (Agent: Tara Singh -- tara.singh@aexp.com -- \(623\) 555-0133. Ticket ESC-2026-771140.) Tj ET
+BT /F2 14 Tf 72 538 Td (2. Reason for Hold) Tj ET
+BT /F1 10 Tf 82 516 Td (An automated fraud rule placed a temporary hold on the account after three high-value) Tj ET
+BT /F1 10 Tf 82 502 Td (transactions in two countries within four hours: a $4,210 charge in London, a $3,775) Tj ET
+BT /F1 10 Tf 82 488 Td (charge in Dubai, and a $5,090 charge in New York on 2026-02-28. The velocity and geography) Tj ET
+BT /F1 10 Tf 82 474 Td (pattern triggered rule FR-VEL-09.) Tj ET
+BT /F1 10 Tf 82 448 Td (The card member called to confirm that the London and Dubai charges were fraudulent and) Tj ET
+BT /F1 10 Tf 82 434 Td (the New York charge was legitimate.) Tj ET
+BT /F2 14 Tf 72 412 Td (3. Escalation & Actions) Tj ET
+BT /F1 10 Tf 82 390 Td (Verified identity using two-factor knowledge questions and the SSN on file in Section 1.) Tj ET
+BT /F1 10 Tf 82 376 Td (Actions: \(1\) confirmed New York charge as valid and released it; \(2\) reversed the London) Tj ET
+BT /F1 10 Tf 82 362 Td (and Dubai charges totaling $7,985 as fraud; \(3\) closed the compromised card ending 3007) Tj ET
+BT /F1 10 Tf 82 348 Td (and ordered a replacement to the address in Section 1; \(4\) escalated to the Fraud) Tj ET
+BT /F1 10 Tf 82 334 Td (Operations team for pattern analysis. Replacement card expected within 5-7 business days.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002542 00000 n 
+0000002612 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2687
+%%EOF

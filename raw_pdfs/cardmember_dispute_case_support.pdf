@@ -1,0 +1,59 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 2159 >>
+stream
+BT /F2 18 Tf 72 750 Td (Card Member Dispute Resolution Case File) Tj ET
+BT /F1 9 Tf 72 718 Td (Document Type: support | Case: DSP-2026-558204 | Opened: 2026-02-20 | Analyst: Gabriela Mendez) Tj ET
+BT /F1 8 Tf 72 700 Td (================================================================================) Tj ET
+BT /F2 14 Tf 72 678 Td (1. Card Member Record \(Confidential\)) Tj ET
+BT /F1 10 Tf 82 656 Td (Card Member: Harold W. Pemberton) Tj ET
+BT /F1 10 Tf 82 642 Td (Account \(card\): 3782 100045 21009) Tj ET
+BT /F1 10 Tf 82 628 Td (Billing Address: 720 Lakeshore Drive, Apt 18C, Chicago, IL 60611) Tj ET
+BT /F1 10 Tf 82 614 Td (Email: hwpemberton@example.com) Tj ET
+BT /F1 10 Tf 82 600 Td (Phone: \(312\) 555-0148) Tj ET
+BT /F1 10 Tf 82 574 Td (Case analyst: Gabriela Mendez -- gabriela.mendez@aexp.com -- \(623\) 555-0192. Case) Tj ET
+BT /F1 10 Tf 82 560 Td (DSP-2026-558204.) Tj ET
+BT /F2 14 Tf 72 538 Td (2. Disputed Transaction) Tj ET
+BT /F1 10 Tf 82 516 Td (Transaction date: 2026-02-11. Merchant: Horizon Travel Partners LLC. Amount: $2,340.00.) Tj ET
+BT /F1 10 Tf 82 502 Td (Reason code: 4853 -- services not rendered. The card member states a flight package was) Tj ET
+BT /F1 10 Tf 82 488 Td (cancelled by the merchant and no refund was issued after 21 days.) Tj ET
+BT /F1 10 Tf 82 462 Td (Provisional credit of $2,340.00 was issued to the account on 2026-02-21 pending) Tj ET
+BT /F1 10 Tf 82 448 Td (investigation. Card member contacted via phone in Section 1 to confirm receipt of the) Tj ET
+BT /F1 10 Tf 82 434 Td (provisional credit.) Tj ET
+BT /F2 14 Tf 72 412 Td (3. Resolution Path) Tj ET
+BT /F1 10 Tf 82 390 Td (A chargeback was initiated against the merchant acquirer under reason code 4853. The) Tj ET
+BT /F1 10 Tf 82 376 Td (merchant has 30 days to respond with compelling evidence. If no valid representment is) Tj ET
+BT /F1 10 Tf 82 362 Td (received by 2026-03-23, the provisional credit becomes permanent. The card member was) Tj ET
+BT /F1 10 Tf 82 348 Td (advised to retain the cancellation confirmation email and was given the case number for) Tj ET
+BT /F1 10 Tf 82 334 Td (status inquiries via the analyst contact in Section 1.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002462 00000 n 
+0000002532 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2607
+%%EOF

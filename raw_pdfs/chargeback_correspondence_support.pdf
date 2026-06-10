@@ -1,0 +1,58 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 2217 >>
+stream
+BT /F2 18 Tf 72 750 Td (Chargeback Correspondence -- Merchant & Card Member) Tj ET
+BT /F1 9 Tf 72 718 Td (Document Type: support | Case: CBK-2026-094417 | Stage: Representment Review | Date: 2026-03-05) Tj ET
+BT /F1 8 Tf 72 700 Td (================================================================================) Tj ET
+BT /F2 14 Tf 72 678 Td (1. Parties \(Confidential\)) Tj ET
+BT /F1 10 Tf 82 656 Td (Card Member: Eleanor J. Whitcombe) Tj ET
+BT /F1 10 Tf 82 642 Td (Account \(card\): 3782 100078 44005) Tj ET
+BT /F1 10 Tf 82 628 Td (Billing Address: 9 Rosewood Lane, Asheville, NC 28801) Tj ET
+BT /F1 10 Tf 82 614 Td (Email: ejwhitcombe@example.com) Tj ET
+BT /F1 10 Tf 82 600 Td (Phone: \(828\) 555-0146) Tj ET
+BT /F1 10 Tf 82 574 Td (Merchant: Summit Outdoor Gear Inc. Merchant contact: billing@summitoutdoor.example --) Tj ET
+BT /F1 10 Tf 82 560 Td (\(704\) 555-0171. Case handler: Marcus Lee -- marcus.lee@aexp.com -- \(623\) 555-0184.) Tj ET
+BT /F2 14 Tf 72 538 Td (2. Chargeback History) Tj ET
+BT /F1 10 Tf 82 516 Td (Original transaction: 2026-01-29, $689.95, reason code 4534 -- duplicate processing. The) Tj ET
+BT /F1 10 Tf 82 502 Td (card member reported being billed twice for a single order \(order #SOG-44821\). A) Tj ET
+BT /F1 10 Tf 82 488 Td (chargeback for the duplicate $689.95 was filed on 2026-02-04.) Tj ET
+BT /F1 10 Tf 82 462 Td (The merchant submitted representment on 2026-02-26 asserting two distinct orders shipped.) Tj ET
+BT /F1 10 Tf 82 448 Td (Supporting documents: two shipping confirmations and a signed delivery receipt.) Tj ET
+BT /F2 14 Tf 72 426 Td (3. Decision & Communication) Tj ET
+BT /F1 10 Tf 82 404 Td (On review, the two shipping confirmations reference the same tracking number, supporting) Tj ET
+BT /F1 10 Tf 82 390 Td (the card member's duplicate-charge claim. Decision: representment rejected; the $689.95) Tj ET
+BT /F1 10 Tf 82 376 Td (chargeback stands and the credit to the card member is final. The merchant was notified at) Tj ET
+BT /F1 10 Tf 82 362 Td (the contact in Section 1 and advised of pre-arbitration rights. The card member was sent a) Tj ET
+BT /F1 10 Tf 82 348 Td (resolution letter confirming the permanent credit and the case number for reference.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002520 00000 n 
+0000002590 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2665
+%%EOF

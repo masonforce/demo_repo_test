@@ -1,0 +1,59 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 2452 >>
+stream
+BT /F2 18 Tf 72 750 Td (System Design -- Card Tokenization Service) Tj ET
+BT /F1 9 Tf 72 718 Td (Document Type: engineering | Design Doc: DD-2026-0072 | Status: Approved | Author: Sai Prasad Devarakonda) Tj ET
+BT /F1 8 Tf 72 700 Td (================================================================================) Tj ET
+BT /F2 14 Tf 72 678 Td (1. Authors & Reviewers) Tj ET
+BT /F1 10 Tf 82 656 Td (Author: Sai Prasad Devarakonda -- sai.devarakonda@aexp.com -- \(602\) 555-0198) Tj ET
+BT /F1 10 Tf 82 642 Td (Reviewer \(Security\): Abhijeet Gandharwar -- abhijeet.gandharwar@aexp.com -- \(212\) 555-0115) Tj ET
+BT /F1 10 Tf 82 628 Td (Reviewer \(Platform\): Chris Patterson -- chris.patterson@aexp.com -- \(480\) 555-0181) Tj ET
+BT /F1 10 Tf 82 602 Td (This document describes the design of a service that replaces raw primary account numbers) Tj ET
+BT /F1 10 Tf 82 588 Td (\(PANs\) with format-preserving tokens. Test PAN used in examples: 3782 822463 10005) Tj ET
+BT /F1 10 Tf 82 574 Td (\(synthetic AmEx test number -- not a live card\).) Tj ET
+BT /F2 14 Tf 72 552 Td (2. Token Generation & Vault) Tj ET
+BT /F1 10 Tf 82 530 Td (The service accepts a PAN, validates it against the issuer BIN range, and generates a) Tj ET
+BT /F1 10 Tf 82 516 Td (surrogate token preserving the last four digits for display \(e.g., token maps card 3782) Tj ET
+BT /F1 10 Tf 82 502 Td (822463 10005 to display value ****-****-*-0005\). Tokens are random, non-reversible without) Tj ET
+BT /F1 10 Tf 82 488 Td (the vault, and stored in a partitioned key-value vault encrypted with envelope encryption) Tj ET
+BT /F1 10 Tf 82 474 Td (\(per-record data key wrapped by a KMS master key\).) Tj ET
+BT /F1 10 Tf 82 448 Td (Detokenization requires a mutually authenticated mTLS call plus a scoped service identity;) Tj ET
+BT /F1 10 Tf 82 434 Td (no batch detokenization is permitted.) Tj ET
+BT /F2 14 Tf 72 412 Td (3. Compliance & Throughput) Tj ET
+BT /F1 10 Tf 82 390 Td (The design keeps raw PANs out of all downstream analytics stores, narrowing PCI-DSS scope) Tj ET
+BT /F1 10 Tf 82 376 Td (to the vault and tokenization service. Target throughput: 45,000 tokenizations/sec at p99) Tj ET
+BT /F1 10 Tf 82 362 Td (< 12ms. Keys rotate every 90 days with overlapping validity to avoid the propagation) Tj ET
+BT /F1 10 Tf 82 348 Td (failure mode seen in INC-2026-0419. Security sign-off is required before any change to the) Tj ET
+BT /F1 10 Tf 82 334 Td (detokenization path.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002755 00000 n 
+0000002825 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2900
+%%EOF
