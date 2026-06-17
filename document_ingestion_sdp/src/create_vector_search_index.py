@@ -24,12 +24,18 @@ VS_EMBEDDING_SOURCE_COLUMN = "page_content_masked"
 VS_EMBEDDING_MODEL_ENDPOINT = "databricks-gte-large-en"
 VS_PIPELINE_TYPE = "TRIGGERED"
 
-# Per-category split: one Delta Sync index per docs_gold_<cat> on the shared
-# endpoint. Keep in sync with CATEGORIES in config.py (duplicated inline).
-CATEGORIES = ["hr", "finance", "research", "engineering", "support"]
+# Single example index for the Knowledge Assistant consumption pattern.
+# Gold produces docs_gold_<cat> for EVERY category, but we vectorize only one —
+# finance (the richest corpus + the tax/audit KA use case) — to demonstrate the
+# RAG/retrieval pattern. The other gold tables stay available for different
+# consumption patterns (batch inference, BI, etc.); they don't each need an index.
+KA_CATEGORY = "finance"
+source_table_name = f"{CATALOG}.{SCHEMA}.docs_gold_{KA_CATEGORY}"
+full_index_name = f"{CATALOG}.{SCHEMA}.docs_gold_{KA_CATEGORY}_index"
 
 print(f"Endpoint: {VS_ENDPOINT_NAME}")
-print(f"Categories: {CATEGORIES}")
+print(f"KA source table: {source_table_name}")
+print(f"KA index: {full_index_name}")
 
 # COMMAND ----------
 
@@ -119,7 +125,7 @@ def gold_table_ready(table_name):
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## Create / Verify Endpoint (shared across all category indexes)
+# MAGIC ## Create / Verify Endpoint
 
 # COMMAND ----------
 
@@ -138,54 +144,49 @@ wait_for_endpoint_ready(client, VS_ENDPOINT_NAME)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## Create / Sync One Index Per Category
-# MAGIC
-# MAGIC For each non-empty `docs_gold_<cat>`: enable CDF, then create or sync
-# MAGIC `docs_gold_<cat>_index` on the shared endpoint. Empty/absent categories
-# MAGIC are skipped (Delta Sync requires rows + CDF). Indexes provision
-# MAGIC sequentially, so expect a few extra minutes per category.
+# MAGIC ## Enable Change Data Feed (KA source table)
 
 # COMMAND ----------
 
-created_indexes = []
-
-for category in CATEGORIES:
-    source_table_name = f"{CATALOG}.{SCHEMA}.docs_gold_{category}"
-    full_index_name = f"{CATALOG}.{SCHEMA}.docs_gold_{category}_index"
-    print("-" * 60)
-    print(f"[{category}] table={source_table_name} index={full_index_name}")
-
-    if not gold_table_ready(source_table_name):
-        print(f"[skip] {category}: gold table missing or empty.")
-        continue
-
-    spark.sql(
-        f"ALTER TABLE {source_table_name} "
-        "SET TBLPROPERTIES (delta.enableChangeDataFeed = true)"
+if not gold_table_ready(source_table_name):
+    raise ValueError(
+        f"{source_table_name} is missing or empty — cannot build the KA index. "
+        f"Confirm the gold step produced docs_gold_{KA_CATEGORY}."
     )
-    print(f"  Change Data Feed enabled on {source_table_name}")
 
-    if index_exists(client, VS_ENDPOINT_NAME, full_index_name):
-        print(f"  Index exists. Triggering sync...")
-        index = client.get_index(
-            endpoint_name=VS_ENDPOINT_NAME, index_name=full_index_name
-        )
-        print(f"  Sync triggered. Result: {index.sync()}")
-    else:
-        print(f"  Creating new Delta Sync index...")
-        index = client.create_delta_sync_index(
-            endpoint_name=VS_ENDPOINT_NAME,
-            source_table_name=source_table_name,
-            index_name=full_index_name,
-            pipeline_type=VS_PIPELINE_TYPE,
-            primary_key=VS_PRIMARY_KEY,
-            embedding_source_column=VS_EMBEDDING_SOURCE_COLUMN,
-            embedding_model_endpoint_name=VS_EMBEDDING_MODEL_ENDPOINT,
-        )
-        print(f"  Index creation initiated.")
+spark.sql(
+    f"ALTER TABLE {source_table_name} "
+    "SET TBLPROPERTIES (delta.enableChangeDataFeed = true)"
+)
+print(f"Change Data Feed enabled on {source_table_name}")
 
-    wait_for_index_ready(client, VS_ENDPOINT_NAME, full_index_name)
-    created_indexes.append(full_index_name)
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## Create / Sync Index
+
+# COMMAND ----------
+
+if index_exists(client, VS_ENDPOINT_NAME, full_index_name):
+    print(f"Index '{full_index_name}' exists. Triggering sync...")
+    index = client.get_index(
+        endpoint_name=VS_ENDPOINT_NAME, index_name=full_index_name
+    )
+    print(f"Sync triggered. Result: {index.sync()}")
+else:
+    print(f"Creating new Delta Sync index '{full_index_name}'...")
+    index = client.create_delta_sync_index(
+        endpoint_name=VS_ENDPOINT_NAME,
+        source_table_name=source_table_name,
+        index_name=full_index_name,
+        pipeline_type=VS_PIPELINE_TYPE,
+        primary_key=VS_PRIMARY_KEY,
+        embedding_source_column=VS_EMBEDDING_SOURCE_COLUMN,
+        embedding_model_endpoint_name=VS_EMBEDDING_MODEL_ENDPOINT,
+    )
+    print(f"Index creation initiated.")
+
+wait_for_index_ready(client, VS_ENDPOINT_NAME, full_index_name)
 
 # COMMAND ----------
 
@@ -198,16 +199,14 @@ print("=" * 60)
 print("VECTOR SEARCH INDEX SUMMARY")
 print("=" * 60)
 print(f"Endpoint: {VS_ENDPOINT_NAME}")
-print(f"Indexes created/synced: {len(created_indexes)}")
-for full_index_name in created_indexes:
-    try:
-        index = client.get_index(
-            endpoint_name=VS_ENDPOINT_NAME, index_name=full_index_name
-        )
-        status = index.describe().get("status", {})
-        num_rows = status.get("num_rows", "N/A")
-        print(f"  {full_index_name}: rows={num_rows}")
-    except Exception as e:
-        print(f"  {full_index_name}: error getting info ({e})")
+print(f"Index: {full_index_name}")
+print(f"Source table: {source_table_name}")
+print(f"Embedding column: {VS_EMBEDDING_SOURCE_COLUMN} (one vector per page row)")
+try:
+    index = client.get_index(endpoint_name=VS_ENDPOINT_NAME, index_name=full_index_name)
+    status = index.describe().get("status", {})
+    print(f"Rows indexed: {status.get('num_rows', 'N/A')}")
+except Exception as e:
+    print(f"Error getting index info: {e}")
 
 print("\nVector Search index setup complete!")
