@@ -24,11 +24,12 @@ PII_MASKING_LLM = "databricks-claude-opus-4-6"
 # ── Classification labels ───────────────────────────────────────────────────
 DOC_TYPE_LABELS = "('hr', 'finance', 'research', 'engineering', 'support')"
 
-# ── Per-category pipeline split ───────────────────────────────────────────────
-# Drives the silver/gold/vector-search per-category loops. Keep in sync with
+# ── Per-category split (applied at the GOLD layer) ────────────────────────────
+# Silver is a single pooled view (docs_silver_pages); the gold step filters by
+# document_type to write one docs_gold_<cat> per category. Keep in sync with
 # DOC_TYPE_LABELS above (same set, list form for iteration).
-# NOTE: silver/gold/VS notebooks duplicate this list inline (imports are not
-# reliable in the SDP pipeline context) — update all copies together.
+# NOTE: gold_summarized.py duplicates this list inline (imports are not reliable
+# in the job context) — update both copies together.
 CATEGORIES = ["hr", "finance", "research", "engineering", "support"]
 
 # ── Prompts ─────────────────────────────────────────────────────────────────

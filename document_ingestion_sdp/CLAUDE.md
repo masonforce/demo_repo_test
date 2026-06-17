@@ -39,31 +39,34 @@ PDF files (UC Volume: /Volumes/bircatalog/pdf2/vol1/source/)
     │   Outputs: docs_bronze_parsed_docs_raw, docs_bronze_elements
     │
     ├─ silver_aggregated_pages.py
-    │   Format elements as markdown → aggregate by page, split by document_type
-    │   Output: docs_silver_<category> (one materialized view per category)
+    │   Format elements as markdown → aggregate by page (all document types)
+    │   Output: docs_silver_pages (single pooled materialized view)
     │
     ▼
 [Standalone Job Tasks - sequential]
     │
     ├─ gold_summarized.py
-    │   PII masking via ai_query() with Claude Opus 4.6, per category
-    │   Output: docs_gold_<category> (Delta tables, overwrite; empties skipped)
+    │   Read pooled silver → filter by document_type → PII masking (ai_query, Claude Opus 4.6)
+    │   Output: docs_gold_<category> (one Delta table per category, overwrite; empties skipped)
     │
     └─ create_vector_search_index.py
-        Delta Sync index per category with GTE Large embeddings
-        Output: docs_gold_<category>_index (shared endpoint; empties skipped)
+        Delta Sync index with GTE Large embeddings on the finance gold table
+        Output: docs_gold_finance_index (single example index for the KA pattern)
 ```
 
-Categories are defined by `CATEGORIES` in `src/config.py` (`hr`, `finance`,
-`research`, `engineering`, `support`) and duplicated inline in the silver, gold,
-and VS notebooks (imports are not reliable in the pipeline/job context).
+The category split happens at the **gold** layer. Categories are defined by
+`CATEGORIES` in `src/config.py` (`hr`, `finance`, `research`, `engineering`,
+`support`) and duplicated inline in `gold_summarized.py` (imports are not
+reliable in the job context). Silver is a single pooled view; only one gold
+table (`finance`) is vectorized, as an example of the retrieval/KA consumption
+pattern — the other gold tables stay available for other consumption patterns.
 
 ### Job Orchestration
 
 The `document_ingestion_job` runs three tasks in sequence:
-1. `refresh_pipeline` — triggers the DLT streaming pipeline (bronze + per-category silver MVs)
-2. `gold_pii_masking` — reads each silver MV, applies PII masking, writes one gold Delta table per category
-3. `vector_search` — enables CDF on each gold table, creates/syncs one Vector Search index per category
+1. `refresh_pipeline` — triggers the DLT streaming pipeline (bronze + pooled silver MV)
+2. `gold_pii_masking` — reads pooled silver, filters by document_type, writes one gold Delta table per category
+3. `vector_search` — enables CDF on `docs_gold_finance`, creates/syncs the `docs_gold_finance_index`
 
 ### Key Distinction
 

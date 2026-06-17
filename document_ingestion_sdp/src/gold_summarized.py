@@ -3,9 +3,10 @@
 # MAGIC # Gold Layer: PII Masking → Delta Tables (docs_gold_<category>)
 # MAGIC
 # MAGIC Runs as a standalone job task AFTER the SDP pipeline refresh.
-# MAGIC Reads from each `docs_silver_<category>` materialized view and writes one
-# MAGIC regular Delta table per category (`docs_gold_<category>`) – not streaming
-# MAGIC tables, not materialized views. Empty categories are skipped.
+# MAGIC Reads the pooled `docs_silver_pages` materialized view, filters by
+# MAGIC `document_type`, and writes one regular Delta table per category
+# MAGIC (`docs_gold_<category>`) – not streaming tables, not materialized views.
+# MAGIC Empty categories are skipped.
 
 # COMMAND ----------
 
@@ -36,10 +37,12 @@ PII_MASKING_PROMPT = (
 
 key_b64 = "0EiSK5fLsVLlQZNl1+8obChaZYjADvyJutadxb2yb40="
 
-# Per-category split: read docs_silver_<cat>, mask, write docs_gold_<cat>.
-# Keep in sync with CATEGORIES in config.py (duplicated inline — imports are
-# not reliable in this job context).
+# Category split happens HERE (gold): read the pooled docs_silver_pages once,
+# then filter by document_type and write one docs_gold_<cat> per category.
+# Keep CATEGORIES in sync with config.py (duplicated inline — imports are not
+# reliable in this job context).
 CATEGORIES = ["hr", "finance", "research", "engineering", "support"]
+SILVER_TABLE = f"{CATALOG}.{SCHEMA}.docs_silver_pages"
 
 escaped_pii_prompt = PII_MASKING_PROMPT.replace("'", "''")
 
@@ -48,30 +51,25 @@ escaped_pii_prompt = PII_MASKING_PROMPT.replace("'", "''")
 # MAGIC %md
 # MAGIC ## Mask + Write One Gold Table Per Category
 # MAGIC
-# MAGIC For each category: read `docs_silver_<cat>`, decrypt + PII-mask, write
-# MAGIC `docs_gold_<cat>` (overwrite). Categories with no rows are skipped so we
-# MAGIC never create an empty gold table (Vector Search needs rows + CDF).
+# MAGIC Read the pooled `docs_silver_pages` once, then for each category filter by
+# MAGIC `document_type`, decrypt + PII-mask, and write `docs_gold_<cat>`
+# MAGIC (overwrite). Categories with no rows are skipped so we never create an
+# MAGIC empty gold table (Vector Search needs rows + CDF).
 
 # COMMAND ----------
 
-def _mask_and_write(category):
-    source_table = f"{CATALOG}.{SCHEMA}.docs_silver_{category}"
+def _mask_and_write(category, silver_df):
     target_table = f"{CATALOG}.{SCHEMA}.docs_gold_{category}"
 
-    try:
-        base_df = spark.table(source_table)
-    except Exception as e:
-        print(f"[skip] {category}: source table {source_table} not found ({e}).")
-        return None
-
-    row_count = base_df.count()
+    cat_df = silver_df.filter(F.col("document_type") == category)
+    row_count = cat_df.count()
     if row_count == 0:
-        print(f"[skip] {category}: {source_table} has 0 rows — no gold table written.")
+        print(f"[skip] {category}: no rows in {SILVER_TABLE} for this document_type — no gold table written.")
         return None
 
-    print(f"[{category}] Source: {source_table} ({row_count} rows) -> Target: {target_table}")
+    print(f"[{category}] {SILVER_TABLE} ({row_count} rows) -> {target_table}")
 
-    base_df = base_df.withColumn("chunk_id", F.expr("uuid()"))
+    base_df = cat_df.withColumn("chunk_id", F.expr("uuid()"))
     base_df = base_df.withColumn(
         "decrypted_page_content",
         F.expr(f"CAST(aes_decrypt(unbase64(encrypted_page_content), unbase64('{key_b64}')) AS STRING)"),
@@ -106,7 +104,8 @@ def _mask_and_write(category):
     return target_table
 
 
-written = [t for t in (_mask_and_write(cat) for cat in CATEGORIES) if t]
+silver_df = spark.table(SILVER_TABLE)
+written = [t for t in (_mask_and_write(cat, silver_df) for cat in CATEGORIES) if t]
 
 # COMMAND ----------
 

@@ -11,18 +11,14 @@ import pyspark.pipelines as dp
 from pyspark.sql import functions as F
 key_b64 = "0EiSK5fLsVLlQZNl1+8obChaZYjADvyJutadxb2yb40="
 
-# Per-category split: one silver MV per document_type. Keep in sync with
-# CATEGORIES in config.py (duplicated inline — imports are not reliable here).
-CATEGORIES = ["hr", "finance", "research", "engineering", "support"]
-
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC ## Page aggregation helper
 # MAGIC
 # MAGIC `_build_pages` holds the decrypt → format → filter → aggregate logic,
-# MAGIC operating on an already-filtered `docs_bronze_elements` DataFrame so the
-# MAGIC same transformation feeds every per-category materialized view below.
+# MAGIC operating on a `docs_bronze_elements` DataFrame. The category split now
+# MAGIC happens at the gold layer, so silver materializes a single pooled view.
 
 # COMMAND ----------
 
@@ -115,28 +111,16 @@ def _build_pages(elements_df):
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## Per-category Materialized Views: docs_silver_<category>
+# MAGIC ## Materialized View: docs_silver_pages
 # MAGIC
-# MAGIC One MV per `document_type` (factory loop — the closure captures the
-# MAGIC category; the decorator registers the view at module load). A category
-# MAGIC with no matching documents materializes an empty MV; downstream gold/VS
-# MAGIC steps skip empties.
+# MAGIC Single pooled view across all document types. `document_type` is carried
+# MAGIC through from bronze so the gold layer can split into docs_gold_<category>.
 
 # COMMAND ----------
 
-def _make_silver(category):
-    @dp.materialized_view(
-        name=f"docs_silver_{category}",
-        comment=f"Silver layer (document_type={category}): elements formatted and aggregated per page.",
-    )
-    def _mv():
-        return _build_pages(
-            spark.table("docs_bronze_elements").filter(
-                F.col("document_type") == category
-            )
-        )
-    return _mv
-
-
-for _cat in CATEGORIES:
-    _make_silver(_cat)
+@dp.materialized_view(
+    name="docs_silver_pages",
+    comment="Silver layer: elements formatted and aggregated per page (all document types).",
+)
+def docs_silver_pages():
+    return _build_pages(spark.table("docs_bronze_elements"))
